@@ -59,8 +59,6 @@ def write_to_excel(extract_data, sheet, row):
     writer.close()
 
 
-# rectangle = '113.321386,23.131254;113.324546,23.128807'
-# url = config.url_traffic + '&extensions=all&rectangle=' + rectangle
 start_row = 1
 while True:
     sheets = ['体育西路', '天河南一路', '体育西横街'] #天河南一路、体育西横街、体育西路

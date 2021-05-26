@@ -56,9 +56,9 @@ def rotate(url, sheet):
             break
         last_row += nums
 
-key = config.key
-url = config.url_data + '&types=' + config.life_poi + '&location=' + config.location + '&radius=200&page='
-rotate(url, '生活')
+# key = config.key
+# url = config.url_data + '&types=' + config.life_poi + '&location=' + config.location + '&radius=200&page='
+# rotate(url, '生活')
 
 # test
 # data = request_url(config.url_data + '&types=' + config.shopping_poi + '&location=' + config.location + '&radius=200&page=1')
