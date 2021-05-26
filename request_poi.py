@@ -1,16 +1,9 @@
-import os
 import json
 import config
 import requests
 import pandas as pd
 from openpyxl import load_workbook
 from requests.exceptions import RequestException
-
-def read_key():
-    key_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'key.txt')
-    with open(key_path, 'r', encoding='utf-8') as f:
-        key = f.read()
-    return key
 
 def request_url(url):
     try:
@@ -47,6 +40,7 @@ def filter(data, sheet, row):
 def rotate(url, sheet):
     last_row = 1
     for i in range(1, 20):
+        #高德poi数据通过页数控制，默认一页20项数据，如果不足二十项则代表数据无了
         type_json = request_url(url + str(i))
         type_dic = parse_json(type_json)
         filter(type_dic, sheet, last_row)
@@ -56,10 +50,6 @@ def rotate(url, sheet):
             break
         last_row += nums
 
-# key = config.key
-# url = config.url_data + '&types=' + config.life_poi + '&location=' + config.location + '&radius=200&page='
-# rotate(url, '生活')
-
-# test
-# data = request_url(config.url_data + '&types=' + config.shopping_poi + '&location=' + config.location + '&radius=200&page=1')
-# print(data)
+key = config.key
+url = config.url_data + '&types=' + config.life_poi + '&location=' + config.location + '&radius=200&page='
+rotate(url, '生活')     #生活、购物、餐饮

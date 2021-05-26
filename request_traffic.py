@@ -20,6 +20,7 @@ def parse_json(content):
     return json.loads(content)
 
 def filter(data, sheet, row):
+    #excel如果直接加入一维列表会垂直添加，二维的则以行为单位横向添加
     single_dimension = list()
     extract_info = data['trafficinfo']
     single_dimension.append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
@@ -58,7 +59,7 @@ def write_to_excel(extract_data, sheet, row):
     frame.to_excel(writer, sheet_name=sheet, index=False, header=False, startrow=row)
     writer.close()
 
-
+#每半小时请求一次数据，抓取六运小区附近的交通拥堵情况
 start_row = 1
 while True:
     sheets = ['体育西路', '天河南一路', '体育西横街'] #天河南一路、体育西横街、体育西路

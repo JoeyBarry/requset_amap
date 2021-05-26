@@ -27,7 +27,7 @@ def save_photo(name, bytes):
 sheet = '生活'  #餐饮、生活、购物
 dir = 'photos/' + sheet + '/'   #保存图片位置
 url = config.url_photo + '&markers=large,0xEE6363,:'
-location, distance = read_sheet(sheet, '经纬度'), read_sheet(sheet, '距中心点距离（米）')
+location, distance = read_sheet(sheet, '经纬度'), read_sheet(sheet, '距中心点距离（米）')   #列名为自己设置的
 
 #以50米为半径，记录中间存在多少实体
 counts = list()
@@ -50,8 +50,10 @@ for d in distance:
 if count > 1:
     counts.append(count)
 
+#高德的静态地图API最多一次请求50个点的经纬度
 last_index, radius = 0, 50
 for c in counts:
+    #设置图片名称格式，结果形如：(0m-50m)0-11food.png 表示距中心点50m以内的第一个到第十二个点
     name = '(' + str(radius - 50) + 'm-' + str(radius) + 'm' + ')'
     rotate_url, last_seq = url, 0
     for i in range(c):
@@ -65,6 +67,3 @@ for c in counts:
             last_seq = i + 1
     radius += 50
     last_index += c
-
-# photo_bytes = request_url(rotate_url)
-# save_photo(dir + str(len(location) - 1) + "shopping.png", photo_bytes)
