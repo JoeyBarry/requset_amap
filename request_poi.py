@@ -40,7 +40,7 @@ def filter(data, sheet, row):
 def rotate(url, sheet):
     last_row = 1
     for i in range(1, 20):
-        #高德poi数据通过页数控制，默认一页20项数据，如果不足二十项则代表数据无了
+        #高德poi数据通过页数控制，默认一页20项数据，如果某页数据不足二十项则代表数据无了
         type_json = request_url(url + str(i))
         type_dic = parse_json(type_json)
         filter(type_dic, sheet, last_row)
