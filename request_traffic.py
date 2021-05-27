@@ -56,6 +56,7 @@ def write_to_excel(extract_data, sheet, row):
     writer = pd.ExcelWriter("road_data.xlsx", engine='openpyxl')
     writer.book = book
     writer.sheets = {ws.title: ws for ws in book.worksheets}
+    #追加数据不需要带行名和列名，因此设为False
     frame.to_excel(writer, sheet_name=sheet, index=False, header=False, startrow=row)
     writer.close()
 
