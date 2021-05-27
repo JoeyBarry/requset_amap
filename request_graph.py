@@ -50,7 +50,7 @@ for d in distance:
 if count > 1:
     counts.append(count)
 
-#高德的静态地图API最多一次请求50个点的经纬度
+#高德的静态地图API最多一次请求50个点的经纬度，因此超过50个点只能另外请求多一张图片
 last_index, radius = 0, 50
 for c in counts:
     #设置图片名称格式，结果形如：(0m-50m)0-11food.png 表示距中心点50m以内的第一个到第十二个点
